@@ -11,6 +11,8 @@ const jwt = require('jsonwebtoken');
 dotenv.config();
 
 const app = express();
+app.use(express.json());
+app.use(cors());
 const port = process.env.PORT || 5001;
 
 // Middleware to authenticate JWT token
@@ -30,8 +32,7 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-// Middleware
-app.use(cors());
+
  
 
 // Routes

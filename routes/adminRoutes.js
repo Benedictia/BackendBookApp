@@ -25,7 +25,6 @@ const authenticateAdmin = (req, res, next) => {
   }
 };
 
-// Route to add a new book (only accessible by authenticated users)
 router.post('/add', authenticateAdmin, async (req, res) => {
   const { title, author, genre, description, link } = req.body;
 
@@ -81,14 +80,14 @@ router.delete('/delete/:id', authenticateAdmin, async (req, res) => {
       return res.status(404).json({ message: 'Book not found.' });
     }
 
-    res.status(200).json({ message: 'Book deleted successfully.' }); // Respond with success message
+    res.status(200).json({ message: 'Book deleted successfully.' }); 
   } catch (error) {
     console.error('Error deleting book:', error);
     res.status(500).json({ message: 'Error deleting book' });
   }
 });
 
-// Route to get all books (accessible by authenticated users)
+// Route to get all books 
 router.get('/all', authenticateAdmin, async (req, res) => {
   try {
     const books = await Books.find();

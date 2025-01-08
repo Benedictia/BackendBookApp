@@ -1,10 +1,8 @@
 
-
-
 const express = require('express');
 const router = express.Router();
 const Book = require('../models/book.model.js');
-const { check, validationResult } = require('express-validator');  // For validation
+const { check, validationResult } = require('express-validator');  
 const jwt = require('jsonwebtoken');
 
 // Middleware to verify the JWT token
@@ -26,7 +24,7 @@ const verifyToken = (req, res, next) => {
 
 // Middleware to verify if the user is an admin
 const verifyAdmin = (req, res, next) => {
-  if (req.user && req.user.role === 'admin') { // Assuming 'role' is a field in your user model
+  if (req.user && req.user.role === 'admin') { 
     return next();
   }
   return res.status(403).json({ msg: 'Admin access required' });
@@ -45,7 +43,7 @@ router.get('/all', async (req, res) => {
 // Add a new book
 router.post(
   '/add', 
-  verifyToken, // Only authorized users can add books
+  verifyToken, 
   [
     // Validation for book fields
     check('title', 'Title is required').notEmpty(),

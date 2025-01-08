@@ -39,7 +39,7 @@ router.post('/register', async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      library: []  // Initialize library as an empty array
+      library: []  
     });
 
     // Save user to database
@@ -70,7 +70,7 @@ router.post('/login', async (req, res) => {
 
     // Create JWT token
     const token = jwt.sign(
-      { userId: user._id }, // User ID is in the token
+      { userId: user._id }, 
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
@@ -104,7 +104,7 @@ router.get('/user', verifyToken, async (req, res) => {
     res.json({
       name: user.name,
       email: user.email,
-      library: user.library, // Include the user's library
+      library: user.library, 
     });
   } catch (err) {
     console.error(err);
@@ -161,9 +161,9 @@ router.put('/library/status', verifyToken, async (req, res) => {
 
     // Update the book's status
     book.status = status;
-    await user.save(); // Save the updated user document with the new status
+    await user.save(); 
 
-    res.json(user.library); // Respond with the full updated library
+    res.json(user.library); 
   } catch (error) {
     console.error(error);
     res.status(500).json({ msg: 'Error updating book status', error });
