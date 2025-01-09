@@ -19,9 +19,11 @@ const userSchema = new mongoose.Schema({
       bookId: { type: String, required: true },
       title: { type: String, required: true },
       author: { type: String, required: true },
-      status: { type: String, required: true }, // 'Reading', 'Completed', etc.
+      status: { type: String, required: true }, 
     },
-  ]
+  ],
+  resetToken: { type: String }, 
+  resetTokenExpiry: { type: Date } 
 });
 
 const User = mongoose.model('User', userSchema);
